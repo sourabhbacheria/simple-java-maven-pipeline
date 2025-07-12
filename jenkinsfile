@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                echo 'Cloning Repository...'
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building the project...'
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Post Build') {
+            steps {
+                echo 'Build complete. Artifact created.'
+            }
+        }
+    }
+}
